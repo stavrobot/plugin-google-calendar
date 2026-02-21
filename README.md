@@ -2,6 +2,10 @@
 
 A [Stavrobot](https://github.com/stavros-k/stavrobot) plugin that lets the assistant manage Google Calendar events.
 
+## Installation
+
+Ask Stavrobot to install git@github.com:stavrobot/plugin-google-calendar.git.
+
 ## Tools
 
 | Tool | Description |
