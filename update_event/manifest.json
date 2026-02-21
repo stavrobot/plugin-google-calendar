@@ -1,0 +1,27 @@
+{
+  "name": "update_event",
+  "description": "Update an existing Google Calendar event.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "event_id": {
+      "type": "string",
+      "description": "ID of the event to update."
+    },
+    "title": {
+      "type": "string",
+      "description": "New event title."
+    },
+    "start": {
+      "type": "string",
+      "description": "New start time in RFC3339 format or date for all-day events."
+    },
+    "end": {
+      "type": "string",
+      "description": "New end time in RFC3339 format or date for all-day events."
+    },
+    "description": {
+      "type": "string",
+      "description": "New event description."
+    }
+  }
+}

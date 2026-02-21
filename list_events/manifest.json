@@ -1,0 +1,11 @@
+{
+  "name": "list_events",
+  "description": "List upcoming events from Google Calendar.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "max_results": {
+      "type": "integer",
+      "description": "Maximum number of events to return. Defaults to 10 if not provided."
+    }
+  }
+}

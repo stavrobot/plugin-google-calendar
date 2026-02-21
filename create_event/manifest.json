@@ -1,0 +1,23 @@
+{
+  "name": "create_event",
+  "description": "Create a new Google Calendar event.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "title": {
+      "type": "string",
+      "description": "Event title."
+    },
+    "start": {
+      "type": "string",
+      "description": "Start time in RFC3339 format (e.g. 2025-06-15T10:00:00Z) or date for all-day events (e.g. 2025-06-15)."
+    },
+    "end": {
+      "type": "string",
+      "description": "End time in RFC3339 format or date for all-day events."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional event description."
+    }
+  }
+}

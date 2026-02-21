@@ -1,0 +1,11 @@
+{
+  "name": "delete_event",
+  "description": "Delete a Google Calendar event.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "event_id": {
+      "type": "string",
+      "description": "ID of the event to delete."
+    }
+  }
+}

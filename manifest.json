@@ -1,0 +1,23 @@
+{
+  "name": "google-calendar",
+  "description": "Manage Google Calendar events.",
+  "config": {
+    "client_id": {
+      "description": "OAuth 2.0 client ID from Google Cloud Console.",
+      "required": true
+    },
+    "client_secret": {
+      "description": "OAuth 2.0 client secret from Google Cloud Console.",
+      "required": true
+    },
+    "refresh_token": {
+      "description": "OAuth 2.0 refresh token obtained via the authorization flow.",
+      "required": true
+    },
+    "calendar_id": {
+      "description": "Google Calendar ID to operate on. Use \"primary\" to target the user's main calendar.",
+      "required": true
+    }
+  },
+  "instructions": "Setup instructions for google-calendar plugin\n\n1. Create a Google Cloud project\n   - Go to https://console.cloud.google.com/\n   - Create a new project or select an existing one.\n\n2. Enable the Google Calendar API\n   - In the project, go to APIs & Services > Library.\n   - Search for \"Google Calendar API\" and click Enable.\n\n3. Create OAuth 2.0 credentials\n   - Go to APIs & Services > Credentials.\n   - Click \"Create Credentials\" > \"OAuth client ID\".\n   - Choose application type: Desktop app.\n   - Note the client_id and client_secret shown.\n\n4. Obtain a refresh token\n\n   Step 4a. Build the authorization URL and open it in your browser:\n\n     https://accounts.google.com/o/oauth2/v2/auth?client_id=CLIENT_ID&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code&scope=https://www.googleapis.com/auth/calendar&access_type=offline&prompt=consent\n\n   Replace CLIENT_ID with your client ID. After granting access, Google shows an authorization code.\n\n   Step 4b. Exchange the code for tokens:\n\n     curl -s -X POST https://oauth2.googleapis.com/token \\\n       -d client_id=CLIENT_ID \\\n       -d client_secret=CLIENT_SECRET \\\n       -d code=AUTH_CODE \\\n       -d grant_type=authorization_code \\\n       -d redirect_uri=urn:ietf:wg:oauth:2.0:oob\n\n   The response JSON contains a \"refresh_token\" field. Copy it.\n\n5. Create config.json at the plugin root:\n\n   {\n     \"client_id\": \"your-client-id\",\n     \"client_secret\": \"your-client-secret\",\n     \"refresh_token\": \"your-refresh-token\",\n     \"calendar_id\": \"primary\"\n   }\n\n   Use \"primary\" for calendar_id to target your main Google Calendar, or replace it with a specific calendar ID (visible in Google Calendar settings under each calendar's details)."
+}
