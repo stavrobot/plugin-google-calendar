@@ -4,7 +4,7 @@ A [Stavrobot](https://github.com/stavros-k/stavrobot) plugin that lets the assis
 
 ## Installation
 
-Ask Stavrobot to install git@github.com:stavrobot/plugin-google-calendar.git.
+Ask Stavrobot to install https://github.com/stavrobot/plugin-google-calendar.git.
 
 ## Tools
 
