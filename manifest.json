@@ -1,6 +1,7 @@
 {
   "name": "google-calendar",
   "description": "Manage Google Calendar events.",
+  "summary": "Manage Google Calendar events",
   "config": {
     "client_id": {
       "description": "OAuth 2.0 client ID from Google Cloud Console.",
