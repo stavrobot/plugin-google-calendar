@@ -1,7 +1,7 @@
 {
   "name": "google-calendar",
-  "description": "Manage Google Calendar events.",
-  "summary": "Manage Google Calendar events",
+  "description": "Manage Google Calendar events, view other people's shared calendars, and check colleagues' free/busy times.",
+  "summary": "Manage Google Calendar events and check others' availability",
   "config": {
     "client_id": {
       "description": "OAuth 2.0 client ID from Google Cloud Console.",

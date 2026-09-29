@@ -1,0 +1,19 @@
+{
+  "name": "free_busy",
+  "description": "Get busy time blocks for one or more calendars, e.g. to find when several colleagues are free. Works even for Workspace colleagues whose event details are not shared. Returns only busy periods; free time is whatever is left in the range.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "calendars": {
+      "type": "string",
+      "description": "Required. Comma-separated list of calendar IDs, usually email addresses (e.g. 'alice@example.com, bob@example.com'). Use list_calendars to see your own calendars."
+    },
+    "time_min": {
+      "type": "string",
+      "description": "Required. Start of the time range, as an RFC 3339 timestamp with timezone (e.g. 2025-06-15T00:00:00Z)."
+    },
+    "time_max": {
+      "type": "string",
+      "description": "Required. End of the time range, as an RFC 3339 timestamp with timezone (e.g. 2025-06-22T00:00:00Z)."
+    }
+  }
+}

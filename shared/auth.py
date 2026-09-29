@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
 import requests
 
@@ -32,5 +33,20 @@ def get_calendar_headers(config: dict[str, Any]) -> dict[str, str]:
     }
 
 
-def get_calendar_id(config: dict[str, Any]) -> str:
-    return config["calendar_id"]
+def get_calendar_id(config: dict[str, Any], calendar_id: str | None = None) -> str:
+    # An explicit calendar_id wins over the configured default. An empty string is rejected rather
+    # than treated as omitted, so a bad target never silently writes to the default calendar.
+    if calendar_id is None:
+        return config["calendar_id"]
+    if not calendar_id.strip():
+        raise ValueError("calendar_id must not be empty; omit it to use the configured calendar.")
+    return calendar_id
+
+
+def events_url(calendar_id: str, event_id: str | None = None) -> str:
+    # Calendar and event IDs can contain characters that are special in URLs (e.g. "#" in
+    # holiday calendar IDs, "@" in emails), so every path segment must be fully encoded.
+    url = f"https://www.googleapis.com/calendar/v3/calendars/{quote(calendar_id, safe='')}/events"
+    if event_id is not None:
+        url += f"/{quote(event_id, safe='')}"
+    return url

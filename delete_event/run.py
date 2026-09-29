@@ -11,16 +11,16 @@ import requests
 # The tool's CWD is delete_event/, so appending ".." makes the sibling shared/ package importable.
 sys.path.append("..")
 
-from shared.auth import get_calendar_headers, get_calendar_id, load_config
+from shared.auth import events_url, get_calendar_headers, get_calendar_id, load_config
 
 
-def delete_event(event_id: str) -> None:
+def delete_event(event_id: str, calendar_id: str | None) -> None:
     config = load_config()
     headers = get_calendar_headers(config)
-    calendar_id = get_calendar_id(config)
+    calendar_id = get_calendar_id(config, calendar_id)
 
     response = requests.delete(
-        f"https://www.googleapis.com/calendar/v3/calendars/{calendar_id}/events/{event_id}",
+        events_url(calendar_id, event_id),
         headers=headers,
     )
     response.raise_for_status()
@@ -30,7 +30,7 @@ def main() -> None:
     params = json.load(sys.stdin)
     event_id = params["event_id"]
 
-    delete_event(event_id)
+    delete_event(event_id, params.get("calendar_id"))
     json.dump({"deleted": True}, sys.stdout)
 
 

@@ -11,7 +11,7 @@ import requests
 # The tool's CWD is update_event/, so appending ".." makes the sibling shared/ package importable.
 sys.path.append("..")
 
-from shared.auth import get_calendar_headers, get_calendar_id, load_config
+from shared.auth import events_url, get_calendar_headers, get_calendar_id, load_config
 
 
 def build_time_field(value: str) -> dict[str, str]:
@@ -38,7 +38,7 @@ def format_event(event: dict) -> dict:
 def update_event(event_id: str, params: dict) -> dict:
     config = load_config()
     headers = get_calendar_headers(config)
-    calendar_id = get_calendar_id(config)
+    calendar_id = get_calendar_id(config, params.get("calendar_id"))
 
     # PATCH sends only the fields to change; omitting a field leaves it unchanged on the server.
     body: dict = {}
@@ -63,7 +63,7 @@ def update_event(event_id: str, params: dict) -> dict:
             body["attendees"] = [{"email": email.strip()} for email in raw.split(",") if email.strip()]
 
     response = requests.patch(
-        f"https://www.googleapis.com/calendar/v3/calendars/{calendar_id}/events/{event_id}",
+        events_url(calendar_id, event_id),
         headers=headers,
         json=body,
     )

@@ -26,6 +26,10 @@
     "attendees": {
       "type": "string",
       "description": "Optional comma-separated list of attendee email addresses (e.g. 'alice@example.com, bob@example.com'). Pass 'none' to explicitly send an empty attendees list. Omit this parameter entirely to leave attendees unset. An empty string is an error."
+    },
+    "calendar_id": {
+      "type": "string",
+      "description": "Optional ID of the calendar to use. Usually a person's email address (for a shared or colleague calendar). Use list_calendars to see the available calendar IDs. Defaults to the configured calendar if not provided."
     }
   }
 }

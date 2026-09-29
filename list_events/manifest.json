@@ -1,11 +1,27 @@
 {
   "name": "list_events",
-  "description": "List upcoming events from Google Calendar.",
+  "description": "List events from Google Calendar. Starts from now by default; use time_min/time_max to look at a specific period and query to search by text.",
   "entrypoint": "run.py",
   "parameters": {
     "max_results": {
       "type": "integer",
       "description": "Maximum number of events to return. Defaults to 10 if not provided."
+    },
+    "time_min": {
+      "type": "string",
+      "description": "Optional start of the time range, as an RFC 3339 timestamp with timezone (e.g. 2025-06-15T00:00:00Z). Only events ending after this time are returned. Defaults to now if not provided."
+    },
+    "time_max": {
+      "type": "string",
+      "description": "Optional end of the time range, as an RFC 3339 timestamp with timezone (e.g. 2025-06-22T00:00:00Z). Only events starting before this time are returned. No upper limit if not provided."
+    },
+    "query": {
+      "type": "string",
+      "description": "Optional free-text search. Only events matching the text (in title, description, location, attendees, etc.) are returned."
+    },
+    "calendar_id": {
+      "type": "string",
+      "description": "Optional ID of the calendar to use. Usually a person's email address (for a shared or colleague calendar). Use list_calendars to see the available calendar IDs. Defaults to the configured calendar if not provided."
     }
   }
 }

@@ -6,6 +6,10 @@
     "event_id": {
       "type": "string",
       "description": "ID of the event to delete."
+    },
+    "calendar_id": {
+      "type": "string",
+      "description": "Optional ID of the calendar to use. Usually a person's email address (for a shared or colleague calendar). Use list_calendars to see the available calendar IDs. Defaults to the configured calendar if not provided."
     }
   }
 }

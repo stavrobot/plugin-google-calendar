@@ -1,0 +1,6 @@
+{
+  "name": "list_calendars",
+  "description": "List the calendars the user can access, with their IDs. Use the returned id as calendar_id in the other calendar tools. access_role tells what the user can do on that calendar: owner (full control, including sharing), writer (can create and edit events), reader (can only view events) or freeBusyReader (can only see when the calendar is busy, not event details). primary is true for the user's main calendar.",
+  "entrypoint": "run.py",
+  "parameters": {}
+}
