@@ -18,6 +18,14 @@
     "calendar_id": {
       "description": "Google Calendar ID to operate on. Use \"primary\" to target the user's main calendar.",
       "required": true
+    },
+    "leave_min_hours": {
+      "description": "How long an out-of-office event must last, in hours, to count as leave and be excluded from my_free_busy. Shorter out-of-office events are treated as busy. Defaults to 8.",
+      "required": false
+    },
+    "ignored_titles": {
+      "description": "Comma-separated event titles that my_free_busy never treats as busy (case-insensitive, exact match). Defaults to \"I don't work Mondays,AL,On AL\".",
+      "required": false
     }
   },
   "instructions": "Setup instructions for google-calendar plugin\n\n1. Create a Google Cloud project\n   - Go to https://console.cloud.google.com/\n   - Create a new project or select an existing one.\n\n2. Enable the Google Calendar API\n   - In the project, go to APIs & Services > Library.\n   - Search for \"Google Calendar API\" and click Enable.\n\n3. Create OAuth 2.0 credentials\n   - Go to APIs & Services > Credentials.\n   - Click \"Create Credentials\" > \"OAuth client ID\".\n   - Choose application type: Desktop app.\n   - Note the client_id and client_secret shown.\n\n4. Obtain a refresh token\n\n   Tell Stavrobot your client_id and client_secret. Stavrobot will generate an authorization URL and give it to you.\n\n   Open the URL in your browser, log in with your Google account, and click \"Allow\" to grant calendar access. Google will then display an authorization code on the page — copy it and paste it back to Stavrobot.\n\n   Stavrobot will exchange the code for tokens and extract the refresh_token for you.\n\n5. Set calendar_id\n\n   Use \"primary\" to target your main Google Calendar, or find a specific calendar ID in Google Calendar settings under each calendar's details page."

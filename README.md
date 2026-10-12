@@ -8,13 +8,14 @@ Ask Stavrobot to install https://github.com/stavrobot/plugin-google-calendar.git
 
 ## Tools
 
-All event tools accept an optional `calendar_id` (usually a person's email address, or an ID from `list_calendars`) to operate on any calendar you can access. If omitted, the `calendar_id` from `config.json` is used.
+All event tools accept an optional `calendar_id` (usually a person's email address, or an ID from `list_calendars`) to operate on any calendar you can access. If omitted, the `calendar_id` from `config.json` is used. `my_free_busy` is the exception: it never takes a `calendar_id` and only ever reads the configured calendar.
 
 | Tool | Description |
 |------|-------------|
 | `list_calendars` | List the calendars you can access, with each one's `id`, `name`, `access_role` (owner/writer/reader/freeBusyReader) and whether it is `primary`. Takes no parameters. |
 | `list_events` | List events, starting from now by default. Accepts `max_results` (default: 10), `time_min` (RFC 3339, default: now), `time_max` (RFC 3339, default: none) and `query` (free-text search). |
 | `free_busy` | Get busy blocks for several calendars, including colleagues whose event details are not shared. Requires `calendars` (comma-separated IDs/emails), `time_min` and `time_max` (RFC 3339). Returns `{"calendars": {"<id>": {"busy": [{"start", "end"}], "errors": [...]}}}`; `errors` (Google reason strings, e.g. `notFound`) appears only for calendars Google could not resolve, and the other calendars are still returned. |
+| `my_free_busy` | Get the user's own busy blocks, restricted to the configured calendar. Requires `time_min` and `time_max` (RFC 3339, at most 31 days apart). Leave (long out-of-office events) and configured ignored titles are excluded, and it returns only `{"busy": [{"start", "end"}]}` — never any event details. |
 | `create_event` | Create an event. Requires `title`, `start`, `end`; accepts optional `description`. |
 | `update_event` | Update an existing event by `event_id`. All other fields are optional. |
 | `delete_event` | Delete an event by `event_id`. |
@@ -72,6 +73,16 @@ Create `config.json` at the plugin root (next to `manifest.json`):
 ```
 
 Use `"primary"` for `calendar_id` to target your main calendar, or replace it with a specific calendar ID (visible in Google Calendar settings under each calendar's details).
+
+`my_free_busy` has two optional config keys: `leave_min_hours` (default `8`) and `ignored_titles` (default `"I don't work Mondays,AL,On AL"`, comma-separated, case-insensitive exact match).
+
+## Development
+
+Run the tests (they fake all HTTP, so no network or credentials are needed):
+
+```bash
+uv run --with pytest --with requests pytest
+```
 
 ## License
 

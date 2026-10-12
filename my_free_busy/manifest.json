@@ -1,0 +1,15 @@
+{
+  "name": "my_free_busy",
+  "description": "Get the user's own busy time blocks. Always uses the configured calendar and cannot read or target any other calendar. Leave (long out-of-office events), ignored titles, transparent events and cancelled events are excluded, so the result is what actually blocks the user's time. Returns only busy periods; free time is whatever is left in the range, and no event details are ever returned.",
+  "entrypoint": "run.py",
+  "parameters": {
+    "time_min": {
+      "type": "string",
+      "description": "Required. Start of the time range, as an RFC 3339 timestamp with timezone (e.g. 2025-06-15T00:00:00Z). Naive timestamps are rejected."
+    },
+    "time_max": {
+      "type": "string",
+      "description": "Required. End of the time range, as an RFC 3339 timestamp with timezone (e.g. 2025-06-22T00:00:00Z). Must be after time_min and at most 31 days later."
+    }
+  }
+}
